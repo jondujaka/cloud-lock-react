@@ -1,8 +1,13 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
+import React from "react";
+import { render } from "react-dom";
+import { Provider } from "react-redux";
+import store from "./js/store/index";
+import App from "./components/App.jsx";
 
-import store from "./js/store";
-import { addUser } from "./js/actions";
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
 
-window.store = store;
-window.addArticle = addUser;
+  document.getElementById("app")
+);
