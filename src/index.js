@@ -3,11 +3,16 @@ import { render } from "react-dom";
 import { Provider } from "react-redux";
 import store from "./js/store/index";
 import App from "./components/App.jsx";
+import { addUser, addDoor } from "./js/actions/index";
+
+window.store = store;
+window.addUser = addUser;
+window.addDoor = addDoor;
 
 render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+	<Provider store={store}>
+		<App />
+	</Provider>,
 
-  document.getElementById("app")
+	document.getElementById("app")
 );
