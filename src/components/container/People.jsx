@@ -50,7 +50,11 @@ class ConnectedPeople extends Component {
 
 				{this.props.users &&
 					this.props.users.length < 4 && (
-						<Input item="person" addFunction={this.registerUser} />
+						<Input
+							item="person"
+							submitFunction={this.registerUser}
+							submitText="Add user"
+						/>
 					)}
 			</div>
 		);

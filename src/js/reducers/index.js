@@ -1,12 +1,12 @@
 import { constants } from "../constants/action-types.js";
 
 const initialState = {
-	name: "Asd",
+	currentUser: { privileged: false, activated: false, id: Number },
 	users: [
 		{
 			name: "admin", //Only this user can add remove other users and doors
 			id: 1,
-			acces: [1, 2],
+			access: [1, 2],
 			admin: true
 		}
 	],
@@ -47,6 +47,34 @@ function rootReducer(state = initialState, action) {
 					...state.doors.filter(door => door.id !== action.payload)
 				]
 			});
+			break;
+
+		case constants.LOGIN:
+			let activated, privileged, id;
+			let access = [];
+
+			state.users.forEach(user => {
+				if (user.name.toLowerCase() === action.payload.toLowerCase()) {
+					activated = true;
+					privileged = user.admin;
+					id = user.id;
+					access = [...user.access];
+				}
+			});
+
+			if (activated) {
+				return Object.assign({}, state, {
+					currentUser: {
+						activated,
+						privileged,
+						id,
+						access
+					}
+				});
+			} else {
+				return state;
+			}
+
 			break;
 
 		default:

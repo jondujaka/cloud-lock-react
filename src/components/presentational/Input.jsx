@@ -17,7 +17,7 @@ class Input extends Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		this.props.addFunction(this.state.value);
+		this.props.submitFunction(this.state.value);
 		this.setState({ value: "" });
 		// this.props.addFunction(this.state.value);
 	}
@@ -30,7 +30,7 @@ class Input extends Component {
 					value={this.state.value}
 					onChange={this.handleChange}
 				/>
-				<button type="submit">Add</button>
+				<button type="submit">{this.props.submitText}</button>
 			</form>
 		);
 	}

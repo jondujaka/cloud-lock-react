@@ -18,7 +18,6 @@ function mapDispatchToProps(dispatch) {
 class ConnectedPeople extends Component {
 	constructor() {
 		super();
-		this.state = {};
 		this.registerDoor = this.registerDoor.bind(this);
 		this.deleteDoor = this.deleteDoor.bind(this);
 	}
@@ -49,7 +48,11 @@ class ConnectedPeople extends Component {
 
 				{this.props.doors &&
 					this.props.doors.length < 2 && (
-						<Input item="person" addFunction={this.registerDoor} />
+						<Input
+							item="person"
+							submitFunction={this.registerDoor}
+							submitText="Add door"
+						/>
 					)}
 			</div>
 		);
