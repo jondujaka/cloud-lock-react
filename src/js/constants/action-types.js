@@ -1,4 +1,7 @@
-const ADD_USER = "ADD_USER";
-const ADD_DOOR = "ADD_DOOR";
-
-export { ADD_USER, ADD_DOOR };
+export const constants = {
+	ADD_USER: "ADD_USER",
+	ADD_DOOR: "ADD_DOOR",
+	REMOVE_USER: "REMOVE_USER",
+	REMOVE_DOOR: "REMOVE_DOOR",
+	LOGIN: "LOGIN"
+};
