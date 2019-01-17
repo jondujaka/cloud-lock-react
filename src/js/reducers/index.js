@@ -53,6 +53,7 @@ function rootReducer(state = initialState, action) {
 			let activated, privileged, id;
 			let access = [];
 
+			console.log("login");
 			state.users.forEach(user => {
 				if (user.name.toLowerCase() === action.payload.toLowerCase()) {
 					activated = true;
@@ -75,6 +76,12 @@ function rootReducer(state = initialState, action) {
 				return state;
 			}
 
+			break;
+
+		case constants.LOGOUT:
+			return Object.assign({}, state, {
+				currentUser: {}
+			});
 			break;
 
 		default:

@@ -9,7 +9,6 @@ const App = () => (
 		<h1>Main App</h1>
 		{/*<Doors />*/}
 		<Landing />
-		<Settings />
 		{/*<People />*/}
 	</div>
 );

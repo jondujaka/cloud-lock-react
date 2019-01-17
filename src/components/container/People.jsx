@@ -24,7 +24,12 @@ class ConnectedPeople extends Component {
 	}
 
 	registerUser(user) {
-		this.props.addNewUser({ name: user, id: this.props.users.length + 1 });
+		this.props.addNewUser({
+			name: user,
+			id: this.props.users.length + 1,
+			privileged: false,
+			access: [1, 2]
+		});
 	}
 
 	deleteUser(user) {

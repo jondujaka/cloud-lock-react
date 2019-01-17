@@ -3,5 +3,6 @@ export const constants = {
 	ADD_DOOR: "ADD_DOOR",
 	REMOVE_USER: "REMOVE_USER",
 	REMOVE_DOOR: "REMOVE_DOOR",
-	LOGIN: "LOGIN"
+	LOGIN: "LOGIN",
+	LOGOUT: "LOGOUT"
 };

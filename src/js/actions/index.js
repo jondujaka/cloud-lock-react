@@ -19,3 +19,7 @@ export function removeDoor(payload) {
 export function login(payload) {
 	return { type: constants.LOGIN, payload };
 }
+
+export function logout() {
+	return { type: constants.LOGOUT };
+}
