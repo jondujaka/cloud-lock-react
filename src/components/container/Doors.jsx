@@ -1,8 +1,11 @@
 import React, { Component } from "react";
+
 import { connect } from "react-redux";
+import { addDoor, removeDoor } from "../../js/actions/index";
+import { uniqueId } from "../../js/utilities";
+
 import Table from "../presentational/Table.jsx";
 import Input from "../presentational/Input.jsx";
-import { addDoor, removeDoor } from "../../js/actions/index";
 
 const mapStateToProps = state => {
 	return { doors: state.doors };
@@ -13,54 +16,48 @@ function mapDispatchToProps(dispatch) {
 		addDoor: door => dispatch(addDoor(door)),
 		removeDoor: door => dispatch(removeDoor(door))
 	};
+};
+
+const ConnectedDoors = props => {
+
+	const registerDoor = door => {
+		props.addDoor({ name: door, id: uniqueId() });
+	}
+
+	const deleteDoor = door => {
+		props.removeDoor(door);
+	}
+
+	const showInput = () => {
+		if(props.doors && props.doors.length < 2){
+			return (
+				<Input
+					item="door"
+					submitFunction={registerDoor}
+					submitText="Add door"
+				/>
+			);
+		}
+	}
+
+	return (
+		<div>
+			{props.doors ? (
+				<Table
+					list={props.doors}
+					deleteItem={deleteDoor}
+				/>
+			) : (
+				<span>No doors</span>
+			)}
+
+			{showInput()}
+		</div>
+	);
 }
-
-class ConnectedPeople extends Component {
-	constructor() {
-		super();
-		this.registerDoor = this.registerDoor.bind(this);
-		this.deleteDoor = this.deleteDoor.bind(this);
-	}
-
-	registerDoor(door) {
-		this.props.addDoor({ name: door, id: this.props.doors.length + 1 });
-	}
-
-	deleteDoor(door) {
-		this.props.removeDoor(door);
-	}
-
-	render() {
-		return (
-			<div>
-				{this.props.doors ? (
-					<ul className="list-group list-group-flush">
-						<Table
-							list={this.props.doors}
-							deleteItem={this.deleteDoor}
-						/>
-					</ul>
-				) : (
-					<span>No doors</span>
-				)}
-
-				{/*<button onClick={addUser}>Test</button>*/}
-
-				{this.props.doors &&
-					this.props.doors.length < 2 && (
-						<Input
-							item="person"
-							submitFunction={this.registerDoor}
-							submitText="Add door"
-						/>
-					)}
-			</div>
-		);
-	}
-}
-const People = connect(
+const Doors = connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(ConnectedPeople);
+)(ConnectedDoors);
 
-export default People;
+export default Doors;

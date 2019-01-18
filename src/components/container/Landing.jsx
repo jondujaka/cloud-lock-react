@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+
 import { connect } from "react-redux";
-import Input from "../presentational/Input.jsx";
 import { login, logout } from "../../js/actions/index";
 import { People } from "./People.jsx";
+
 import AccessPoint from "./AccessPoint";
+import Input from "../presentational/Input.jsx";
 import Settings from "../presentational/Settings";
 
 function mapDispatchToProps(dispatch) {

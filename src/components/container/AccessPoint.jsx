@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+
 import { connect } from "react-redux";
-import Input from "../presentational/Input.jsx";
 import { login } from "../../js/actions/index";
+
+import Input from "../presentational/Input.jsx";
 
 function mapDispatchToProps(dispatch) {
 	return {
@@ -16,30 +18,24 @@ const mapStateToProps = state => {
 	};
 };
 
-class ConnectedAccessPoint extends Component {
-	constructor() {
-		super();
-		this.auth = this.auth.bind(this);
-	}
-	auth(door) {
-		this.props.currentUser.access.map(point => {
+const ConnectedAccessPoint = props => {
+	const auth = door => {
+		props.currentUser.access.map(point => {
 			if (point === door) {
 				console.log("access granted");
 			}
 		});
 	}
 
-	render() {
-		return (
-			<div className="landing">
-				{this.props.doors.map(door => (
-					<a onClick={() => this.auth(door.id)} key={door.id}>
-						{door.name}
-					</a>
-				))}
-			</div>
-		);
-	}
+	return (
+		<div className="landing">
+			{props.doors.map(door => (
+				<a onClick={() => auth(door.id)} key={door.id}>
+					{door.name}
+				</a>
+			))}
+		</div>
+	);
 }
 
 const AccessPoint = connect(

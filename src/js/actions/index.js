@@ -1,25 +1,36 @@
-import { constants } from "../constants/action-types";
+import {constants}  from "../constants/action-types";
 
-export function addUser(payload) {
+const addUser = payload => {
 	return { type: constants.ADD_USER, payload };
 }
 
-export function addDoor(payload) {
+const addDoor = payload => {
 	return { type: constants.ADD_DOOR, payload };
 }
 
-export function removeUser(payload) {
+const removeUser = payload => {
 	return { type: constants.REMOVE_USER, payload };
 }
 
-export function removeDoor(payload) {
+const removeDoor = payload => {
 	return { type: constants.REMOVE_DOOR, payload };
 }
 
-export function login(payload) {
+const login = payload => {
 	return { type: constants.LOGIN, payload };
 }
 
-export function logout() {
+const logout = () =>{
 	return { type: constants.LOGOUT };
 }
+
+export {
+	addUser,
+	addDoor,
+	removeUser,
+	removeDoor,
+	login,
+	logout
+}
+
+
