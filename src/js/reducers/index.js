@@ -15,7 +15,13 @@ const initialState = {
 			name: "Door 1",
 			id: 1
 		}
-	]
+	],
+	alert: {
+		show: true,
+		type: String,
+		content: 'asd'
+	}
+
 };
 
 function rootReducer(state = initialState, action) {
@@ -40,6 +46,10 @@ function rootReducer(state = initialState, action) {
 			});
 			break;
 
+		case constants.UPDATE_USER:
+			return state;
+			break;
+
 		case constants.REMOVE_DOOR:
 			console.log(action.payload);
 			return Object.assign({}, state, {
@@ -50,27 +60,21 @@ function rootReducer(state = initialState, action) {
 			break;
 
 		case constants.LOGIN:
-			let activated, privileged, id;
-			let access = [];
+			let newUser = {}
 
 			console.log("login");
 			state.users.forEach(user => {
 				if (user.name.toLowerCase() === action.payload.toLowerCase()) {
-					activated = true;
-					privileged = user.admin;
-					id = user.id;
-					access = [...user.access];
+					newUser.activated = true;
+					newUser.privileged = user.admin;
+					newUser.id = user.id;
+					newUser.access = [...user.access];
 				}
 			});
 
-			if (activated) {
+			if (newUser.activated) {
 				return Object.assign({}, state, {
-					currentUser: {
-						activated,
-						privileged,
-						id,
-						access
-					}
+					currentUser: {...newUser}
 				});
 			} else {
 				return state;
@@ -81,6 +85,14 @@ function rootReducer(state = initialState, action) {
 		case constants.LOGOUT:
 			return Object.assign({}, state, {
 				currentUser: {}
+			});
+			break;
+
+		case constants.TOGGLE_ALERT:
+			return Object.assign({}, state, {
+				alert: {
+					...action.payload
+				}
 			});
 			break;
 

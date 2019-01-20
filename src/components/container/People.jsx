@@ -1,20 +1,23 @@
 import React, { Component } from "react";
 
 import { connect } from "react-redux";
-import { addUser, removeUser } from "../../js/actions/index";
+import { addUser, removeUser, updateUser } from "../../js/actions/index";
 import { uniqueId } from "../../js/utilities";
 
 import Table from "../presentational/Table.jsx";
 import Input from "../presentational/Input.jsx";
+import Alert from "../presentational/Alert.jsx";
 
 const mapStateToProps = state => {
-	return { users: state.users };
+	return { users: state.users, alert: state.alert, doors: state.doors };
 };
 
 function mapDispatchToProps(dispatch) {
 	return {
 		addNewUser: user => dispatch(addUser(user)),
-		removeUser: user => dispatch(removeUser(user))
+		removeUser: user => dispatch(removeUser(user)),
+		updateUser: (accesses, id) => dispatch(updateUser({id, accesses})),
+		closeAlert: alert => dispatch(toggleAlert({show: false}))
 	};
 }
 
@@ -29,8 +32,18 @@ const ConnectedPeople = props => {
 		});
 	}
 
+	const updateUser = (id, accesses) => {
+		console.log(accesses, id);
+		props.updateUser(id, accesses);
+		// props.updateUser(userId, data);
+	}
+
 	const deleteUser = user => {
 		props.removeUser(user);
+	}
+
+	const closeAlert = () => {
+		props.closeAlert();
 	}
 
 	const showInput = () => {
@@ -47,10 +60,15 @@ const ConnectedPeople = props => {
 
 	return (
 		<div>
+
+			{props.alert.show && <Alert closeAlert={closeAlert} alert={props.alert} />}
+
 			{props.users ? (
 				<Table
 					list={props.users}
 					deleteItem={deleteUser}
+					options={props.doors}
+					updateUser={updateUser}
 				/>
 			) : (
 				<span>No users</span>
