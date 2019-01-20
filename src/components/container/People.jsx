@@ -1,15 +1,14 @@
 import React, { Component } from "react";
-
 import { connect } from "react-redux";
+
 import { addUser, removeUser, updateUser } from "../../js/actions/index";
 import { uniqueId } from "../../js/utilities";
 
 import Table from "../presentational/Table.jsx";
 import Input from "../presentational/Input.jsx";
-import Alert from "../presentational/Alert.jsx";
 
 const mapStateToProps = state => {
-	return { users: state.users, alert: state.alert, doors: state.doors };
+	return { users: state.users, doors: state.doors };
 };
 
 function mapDispatchToProps(dispatch) {
@@ -17,8 +16,7 @@ function mapDispatchToProps(dispatch) {
 		addNewUser: user => dispatch(addUser(user)),
 		removeUser: user => dispatch(removeUser(user)),
 		updateUser: (accesses, userId) =>
-			dispatch(updateUser({ accesses, userId })),
-		closeAlert: alert => dispatch(toggleAlert({ show: false }))
+			dispatch(updateUser({ accesses, userId }))
 	};
 }
 
@@ -34,15 +32,10 @@ const ConnectedPeople = props => {
 
 	const updateUser = (accesses, itemId) => {
 		props.updateUser(accesses, itemId);
-		// props.updateUser(userId, data);
 	};
 
 	const deleteUser = user => {
 		props.removeUser(user);
-	};
-
-	const closeAlert = () => {
-		props.closeAlert();
 	};
 
 	const showInput = () => {
@@ -51,18 +44,15 @@ const ConnectedPeople = props => {
 				<Input
 					item="person"
 					submitFunction={registerUser}
-					submitText="Add user"
+					submitText="Add"
+					placeholder="Add new user"
 				/>
 			);
 		}
 	};
 
 	return (
-		<div>
-			{props.alert.show && (
-				<Alert closeAlert={closeAlert} alert={props.alert} />
-			)}
-
+		<div className="table-wrapper">
 			{props.users ? (
 				<Table
 					list={props.users}

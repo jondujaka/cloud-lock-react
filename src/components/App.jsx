@@ -1,15 +1,18 @@
 import React from "react";
+
 import People from "./container/People";
 import Doors from "./container/Doors";
 import Landing from "./container/Landing";
 import Settings from "./presentational/Settings";
+import Alert from "./presentational/Alert";
+
+import "./App.css";
 
 const App = () => (
-	<div>
-		<h1>Main App</h1>
-		{/*<Doors />*/}
+	<div className="main-wrapper">
+		<Alert />
+		<h1>Cloud Lock</h1>
 		<Landing />
-		{/*<People />*/}
 	</div>
 );
 

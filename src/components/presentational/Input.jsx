@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./Input.css";
 
 class Input extends Component {
 	constructor(props) {
@@ -27,10 +28,13 @@ class Input extends Component {
 			<form onSubmit={this.handleSubmit}>
 				<input
 					type="text"
+					placeholder={this.props.placeholder}
 					value={this.state.value}
 					onChange={this.handleChange}
 				/>
-				<button type="submit">{this.props.submitText}</button>
+				<button type="submit" disabled={this.state.value.length < 2}>
+					{this.props.submitText}
+				</button>
 			</form>
 		);
 	}

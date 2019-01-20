@@ -1,22 +1,28 @@
 import React, { Component } from "react";
-
 import { connect } from "react-redux";
-import { login, logout } from "../../js/actions/index";
+
+import { login, logout, toggleAlert } from "../../js/actions/index";
 import { People } from "./People.jsx";
 
 import AccessPoint from "./AccessPoint";
 import Input from "../presentational/Input.jsx";
 import Settings from "../presentational/Settings";
 
+import "./Landing.css";
+
 function mapDispatchToProps(dispatch) {
 	return {
 		login: user => dispatch(login(user)),
-		logout: () => dispatch(logout())
+		logout: () => dispatch(logout()),
+		toggleAlert: alert => dispatch(toggleAlert(alert))
 	};
 }
 
 const mapStateToProps = state => {
-	return { currentUser: state.currentUser };
+	return {
+		currentUser: state.currentUser,
+		users: state.users
+	};
 };
 
 class ConnectedLanding extends Component {
@@ -29,19 +35,51 @@ class ConnectedLanding extends Component {
 		this.logOut = this.logOut.bind(this);
 		this.changePage = this.changePage.bind(this);
 	}
-	auth(user) {
-		this.props.login(user);
+	auth(username) {
+		let userExists = false;
+		let newUser = {};
+		this.props.users.forEach(user => {
+			if (user.name.toLowerCase() === username.toLowerCase()) {
+				userExists = true;
+				newUser.activated = true;
+				newUser.privileged = user.admin;
+				newUser.id = user.id;
+				newUser.access = [...user.access];
+			}
+		});
+		if (userExists) {
+			this.props.login(newUser);
+		} else {
+			this.props.toggleAlert({
+				show: true,
+				content: "That user doesn't exist",
+				type: "error"
+			});
+		}
 	}
 
 	logOut() {
-		console.log("logout");
 		this.props.logout();
+		this.changePage("access-point");
 	}
 
 	renderPage() {
 		switch (this.state.view) {
 			case "access-point":
-				return <h1>Access Point View </h1>;
+				if (this.props.currentUser.activated) {
+					return <AccessPoint />;
+				} else {
+					return (
+						<div className="login-wrapper">
+							<Input
+								submitText="Login"
+								placeholder="Enter your username"
+								submitFunction={this.auth}
+							/>
+						</div>
+					);
+				}
+
 				break;
 			case "settings":
 				if (this.props.currentUser.privileged) {
@@ -66,7 +104,29 @@ class ConnectedLanding extends Component {
 
 	settingsButton() {
 		if (this.props.currentUser.privileged) {
-			return <a onClick={() => this.changePage("settings")}>Settings</a>;
+			return (
+				<a
+					className={this.state.view === "settings" ? "active" : ""}
+					onClick={() => this.changePage("settings")}
+				>
+					Settings
+				</a>
+			);
+		}
+	}
+
+	accessButon() {
+		if (this.props.currentUser.activated) {
+			return (
+				<a
+					className={
+						this.state.view === "access-point" ? "active" : ""
+					}
+					onClick={() => this.changePage("access-point")}
+				>
+					Access Point
+				</a>
+			);
 		}
 	}
 
@@ -74,20 +134,12 @@ class ConnectedLanding extends Component {
 		return (
 			<div className="landing">
 				<div className="navigation">
-					<a onClick={() => this.changePage("access-point")}>
-						Access Point
-					</a>
+					{this.accessButon()}
 					{this.settingsButton()}
 					{this.logoutButton()}
 				</div>
 
 				{this.renderPage()}
-
-				{this.props.currentUser.activated ? (
-					<AccessPoint />
-				) : (
-					<Input submitText="Login" submitFunction={this.auth} />
-				)}
 			</div>
 		);
 	}

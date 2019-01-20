@@ -1,0 +1,14 @@
+html {
+	font-family: "Garamond", sans-serif;
+}
+
+.main-wrapper {
+	max-width: 1200px;
+	width: calc(100% - 4rem); /* Mobile */
+	margin: 0 auto;
+	padding-top: 3rem;
+}
+
+.main-wrapper > h1 {
+	text-align: center;
+}

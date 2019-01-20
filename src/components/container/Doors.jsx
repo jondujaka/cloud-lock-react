@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-
 import { connect } from "react-redux";
+
 import { addDoor, removeDoor } from "../../js/actions/index";
 import { uniqueId } from "../../js/utilities";
 
@@ -16,37 +16,34 @@ function mapDispatchToProps(dispatch) {
 		addDoor: door => dispatch(addDoor(door)),
 		removeDoor: door => dispatch(removeDoor(door))
 	};
-};
+}
 
 const ConnectedDoors = props => {
-
 	const registerDoor = door => {
 		props.addDoor({ name: door, id: uniqueId() });
-	}
+	};
 
 	const deleteDoor = door => {
 		props.removeDoor(door);
-	}
+	};
 
 	const showInput = () => {
-		if(props.doors && props.doors.length < 2){
+		if (props.doors && props.doors.length < 2) {
 			return (
 				<Input
 					item="door"
 					submitFunction={registerDoor}
-					submitText="Add door"
+					submitText="Add"
+					placeholder="Add new door"
 				/>
 			);
 		}
-	}
+	};
 
 	return (
-		<div>
+		<div className="table-wrapper">
 			{props.doors ? (
-				<Table
-					list={props.doors}
-					deleteItem={deleteDoor}
-				/>
+				<Table list={props.doors} deleteItem={deleteDoor} />
 			) : (
 				<span>No doors</span>
 			)}
@@ -54,7 +51,7 @@ const ConnectedDoors = props => {
 			{showInput()}
 		</div>
 	);
-}
+};
 const Doors = connect(
 	mapStateToProps,
 	mapDispatchToProps

@@ -1,13 +1,15 @@
 import React, { Component } from "react";
-
 import { connect } from "react-redux";
-import { login } from "../../js/actions/index";
 
+import { login, toggleAlert } from "../../js/actions/index";
 import Input from "../presentational/Input.jsx";
+
+import "./AccessPoint.css";
 
 function mapDispatchToProps(dispatch) {
 	return {
-		login: user => dispatch(login(user))
+		login: user => dispatch(login(user)),
+		toggleAlert: alert => dispatch(toggleAlert(alert))
 	};
 }
 
@@ -20,23 +22,40 @@ const mapStateToProps = state => {
 
 const ConnectedAccessPoint = props => {
 	const auth = door => {
+		let hasAccess = false;
 		props.currentUser.access.map(point => {
 			if (point === door) {
-				console.log("access granted");
+				hasAccess = true;
 			}
 		});
-	}
+
+		let alertObj = {
+			show: true
+		};
+		if (hasAccess) {
+			alertObj.type = "success";
+			alertObj.content = "Access Granted!";
+		} else {
+			alertObj.type = "error";
+			alertObj.content = "Access Denied!";
+		}
+		props.toggleAlert(alertObj);
+	};
 
 	return (
-		<div className="landing">
+		<div className="access-point">
 			{props.doors.map(door => (
-				<a onClick={() => auth(door.id)} key={door.id}>
+				<a
+					title="Click to enter"
+					onClick={() => auth(door.id)}
+					key={door.id}
+				>
 					{door.name}
 				</a>
 			))}
 		</div>
 	);
-}
+};
 
 const AccessPoint = connect(
 	mapStateToProps,

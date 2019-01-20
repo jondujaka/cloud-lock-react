@@ -1,0 +1,19 @@
+.login-wrapper {
+	text-align: center;
+	margin-top: 9rem;
+}
+
+.navigation {
+	display: flex;
+	justify-content: center;
+}
+.navigation a {
+	cursor: pointer;
+	margin: 0 0.8rem;
+	padding: 0.4rem 0.2rem;
+}
+
+.navigation .active,
+.navigation a:hover {
+	border-bottom: 1px solid #498db5;
+}

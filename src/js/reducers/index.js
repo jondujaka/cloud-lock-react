@@ -17,9 +17,9 @@ const initialState = {
 		}
 	],
 	alert: {
-		show: true,
-		type: String,
-		content: "asd"
+		show: false,
+		type: "",
+		content: ""
 	}
 };
 
@@ -79,22 +79,7 @@ function rootReducer(state = initialState, action) {
 			break;
 
 		case constants.LOGIN:
-			let newUser = {};
-			state.users.forEach(user => {
-				if (user.name.toLowerCase() === action.payload.toLowerCase()) {
-					newUser.activated = true;
-					newUser.privileged = user.admin;
-					newUser.id = user.id;
-					newUser.access = [...user.access];
-				}
-			});
-
-			if (newUser.activated) {
-				return { ...state, currentUser: { ...newUser } };
-			} else {
-				return state;
-			}
-
+			return { ...state, currentUser: { ...action.payload } };
 			break;
 
 		case constants.LOGOUT:

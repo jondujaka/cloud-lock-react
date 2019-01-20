@@ -1,4 +1,5 @@
 import React from "react";
+import "./Table.css";
 
 const Table = props => {
 	const deleteItem = id => {
@@ -8,12 +9,16 @@ const Table = props => {
 	const options = (accesses, itemId) => {
 		if (props.options) {
 			return props.options.map(option => (
-				<input
-					type="checkbox"
-					onChange={() => toggleCheck(accesses, option.id, itemId)}
-					checked={accesses.includes(option.id)}
-					key={option.id}
-				/>
+				<label key={option.id}>
+					{option.name}
+					<input
+						type="checkbox"
+						onChange={() =>
+							toggleCheck(accesses, option.id, itemId)
+						}
+						checked={accesses.includes(option.id)}
+					/>
+				</label>
 			));
 		}
 	};
@@ -35,15 +40,36 @@ const Table = props => {
 	};
 
 	return (
-		<ul>
-			{props.list.map(item => (
-				<li key={item.id}>
-					<span>{item.name}</span>
-					<a onClick={() => deleteItem(item.id)}>Remove</a>
-					{options(item.access, item.id)}
-				</li>
-			))}
-		</ul>
+		<div className="table">
+			<ul>
+				{props.list.map(item => (
+					<li key={item.id}>
+						<span>{item.name}</span>
+						<div className="options">
+							{options(item.access, item.id)}
+						</div>
+						<a
+							title="Delete item"
+							className="remove"
+							onClick={() => deleteItem(item.id)}
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 16 16"
+							>
+								<path fill="none" d="M-2-1h20v18H-2z" />
+								<g>
+									<path
+										fill="#000"
+										d="M11 8.2l4.4-4.4c.6-.6.6-1.7 0-2.4l-.6-.6c-.6-.6-1.7-.6-2.4 0L8 5.2 3.6.8C3 .2 1.9.2 1.3.8l-.6.6C0 2.1 0 3.1.7 3.8l4.4 4.4-4.4 4.4c-.6.6-.6 1.7 0 2.4l.6.6c.6.6 1.7.6 2.4 0L8 11.1l4.4 4.4c.6.6 1.7.6 2.4 0l.6-.6c.6-.6.6-1.7 0-2.4L11 8.2z"
+									/>
+								</g>
+							</svg>
+						</a>
+					</li>
+				))}
+			</ul>
+		</div>
 	);
 };
 

@@ -3,6 +3,8 @@ import React from "react";
 import Doors from "../container/Doors";
 import People from "../container/People";
 
+import "./Settings.css";
+
 const Table = props => {
 	const deleteItem = id => {
 		props.deleteItem(id);
@@ -10,8 +12,12 @@ const Table = props => {
 
 	return (
 		<div className="settings">
-			<People />
-			<Doors />
+			<div className="setting-wrapper">
+				<People />
+			</div>
+			<div className="setting-wrapper">
+				<Doors />
+			</div>
 		</div>
 	);
 };
