@@ -16,38 +16,37 @@ function mapDispatchToProps(dispatch) {
 	return {
 		addNewUser: user => dispatch(addUser(user)),
 		removeUser: user => dispatch(removeUser(user)),
-		updateUser: (accesses, id) => dispatch(updateUser({id, accesses})),
-		closeAlert: alert => dispatch(toggleAlert({show: false}))
+		updateUser: (accesses, userId) =>
+			dispatch(updateUser({ accesses, userId })),
+		closeAlert: alert => dispatch(toggleAlert({ show: false }))
 	};
 }
 
 const ConnectedPeople = props => {
-
 	const registerUser = user => {
 		props.addNewUser({
 			name: user,
 			id: uniqueId(),
 			privileged: false,
-			access: [1, 2]
+			access: []
 		});
-	}
+	};
 
-	const updateUser = (id, accesses) => {
-		console.log(accesses, id);
-		props.updateUser(id, accesses);
+	const updateUser = (accesses, itemId) => {
+		props.updateUser(accesses, itemId);
 		// props.updateUser(userId, data);
-	}
+	};
 
 	const deleteUser = user => {
 		props.removeUser(user);
-	}
+	};
 
 	const closeAlert = () => {
 		props.closeAlert();
-	}
+	};
 
 	const showInput = () => {
-		if(props.users && props.users.length < 4){
+		if (props.users && props.users.length < 4) {
 			return (
 				<Input
 					item="person"
@@ -56,12 +55,13 @@ const ConnectedPeople = props => {
 				/>
 			);
 		}
-	}
+	};
 
 	return (
 		<div>
-
-			{props.alert.show && <Alert closeAlert={closeAlert} alert={props.alert} />}
+			{props.alert.show && (
+				<Alert closeAlert={closeAlert} alert={props.alert} />
+			)}
 
 			{props.users ? (
 				<Table
@@ -77,7 +77,7 @@ const ConnectedPeople = props => {
 			{showInput()}
 		</div>
 	);
-}
+};
 
 const People = connect(
 	mapStateToProps,

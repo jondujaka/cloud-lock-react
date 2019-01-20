@@ -1,32 +1,38 @@
 import React from "react";
 
 const Table = props => {
-
 	const deleteItem = id => {
 		props.deleteItem(id);
 	};
 
-	const options = accesses => {
-		console.log(props.options);
-		if(props.options){
+	const options = (accesses, itemId) => {
+		if (props.options) {
 			return props.options.map(option => (
-				<input type="checkbox" onChange={() => toggleCheck(accesses, option.id)} checked={accesses.includes(option.id)} key={option.id} />
-				)
-			);
+				<input
+					type="checkbox"
+					onChange={() => toggleCheck(accesses, option.id, itemId)}
+					checked={accesses.includes(option.id)}
+					key={option.id}
+				/>
+			));
 		}
-	}
+	};
 
-	const toggleCheck = (accesses, id) => {
-		if(accesses.includes(id)){
-			let newAccesses = accesses.filter(access => {
-				access != id;
+	const toggleCheck = (accesses, optionId, itemId) => {
+		if (accesses.includes(optionId)) {
+			let newAccesses = [];
+
+			accesses.filter(access => {
+				if (access !== optionId) {
+					newAccesses.push(access);
+				}
 			});
-			props.updateUser(accesses, id);
+			props.updateUser(newAccesses, itemId);
 		} else {
-			accesses.push(id);
-			props.updateUser(accesses, id);
+			accesses.push(optionId);
+			props.updateUser(accesses, itemId);
 		}
-	}
+	};
 
 	return (
 		<ul>
@@ -34,10 +40,9 @@ const Table = props => {
 				<li key={item.id}>
 					<span>{item.name}</span>
 					<a onClick={() => deleteItem(item.id)}>Remove</a>
-					{options(item.access)}
+					{options(item.access, item.id)}
 				</li>
-				)
-			)}
+			))}
 		</ul>
 	);
 };
