@@ -29,7 +29,6 @@ li .options {
 .options label {
 	margin: 0 0.5rem;
 	display: inline-flex;
-	align-items: center;
 }
 
 .options label input {

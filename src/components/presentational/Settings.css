@@ -9,6 +9,10 @@
 	margin-top: 4rem;
 	min-width: 380px;
 }
+.setting-wrapper h2 {
+	text-align: center;
+	font-weight: 400;
+}
 
 .table-wrapper {
 	height: 100%;
@@ -16,4 +20,5 @@
 	flex-direction: column;
 	justify-content: space-between;
 }
+
 

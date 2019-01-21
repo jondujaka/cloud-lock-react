@@ -32,6 +32,7 @@ const Table = props => {
 					newAccesses.push(access);
 				}
 			});
+
 			props.updateUser(newAccesses, itemId);
 		} else {
 			accesses.push(optionId);

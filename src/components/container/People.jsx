@@ -54,12 +54,15 @@ const ConnectedPeople = props => {
 	return (
 		<div className="table-wrapper">
 			{props.users ? (
-				<Table
-					list={props.users}
-					deleteItem={deleteUser}
-					options={props.doors}
-					updateUser={updateUser}
-				/>
+				<React.Fragment>
+					<h2>People</h2>
+					<Table
+						list={props.users}
+						deleteItem={deleteUser}
+						options={props.doors}
+						updateUser={updateUser}
+					/>
+				</React.Fragment>
 			) : (
 				<span>No users</span>
 			)}

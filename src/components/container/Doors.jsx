@@ -43,7 +43,10 @@ const ConnectedDoors = props => {
 	return (
 		<div className="table-wrapper">
 			{props.doors ? (
-				<Table list={props.doors} deleteItem={deleteDoor} />
+				<React.Fragment>
+					<h2>Doors</h2>
+					<Table list={props.doors} deleteItem={deleteDoor} />
+				</React.Fragment>
 			) : (
 				<span>No doors</span>
 			)}

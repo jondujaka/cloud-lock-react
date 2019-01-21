@@ -63,10 +63,23 @@ function rootReducer(state = initialState, action) {
 				return { ...user, access: action.payload.accesses };
 			});
 
-			return {
-				...state,
-				users: [...updatedUsers]
-			};
+			if(action.payload.userId == state.currentUser.id){
+				let updatedCurrentUser = {
+					...state.currentUser,
+					access: action.payload.accesses
+				}
+				return {
+					...state,
+					users: [...updatedUsers],
+					currentUser: {...updatedCurrentUser}
+				}
+			} else {
+				return {
+					...state,
+					users: [...updatedUsers]
+				};
+			}
+
 			break;
 
 		case constants.REMOVE_DOOR:
