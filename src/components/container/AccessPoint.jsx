@@ -23,26 +23,7 @@ const mapStateToProps = state => {
 
 const ConnectedAccessPoint = props => {
 	const auth = door => {
-		let hasAccess = false;
-
 		props.accessDoor(door);
-		// props.currentUser.access.map(point => {
-		// 	if (point === door) {
-		// 		hasAccess = true;
-		// 	}
-		// });
-
-		// let alertObj = {
-		// 	show: true
-		// };
-		// if (hasAccess) {
-		// 	alertObj.type = "success";
-		// 	alertObj.content = "Access Granted!";
-		// } else {
-		// 	alertObj.type = "error";
-		// 	alertObj.content = "Access Denied!";
-		// }
-		// props.toggleAlert(alertObj);
 	};
 
 	return (
@@ -50,7 +31,7 @@ const ConnectedAccessPoint = props => {
 			{props.doors.map(door => (
 				<a
 					title="Click to enter"
-					onClick={() => auth(door.id)}
+					onClick={() => auth(door)}
 					key={door.id}
 				>
 					{door.name}

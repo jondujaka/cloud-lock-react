@@ -5,6 +5,7 @@ import { login, logout, toggleAlert } from "../../js/actions/index";
 import { People } from "./People.jsx";
 
 import AccessPoint from "./AccessPoint";
+import EventsLog from "./EventsLog";
 import Input from "../presentational/Input.jsx";
 import Settings from "../presentational/Settings";
 
@@ -87,6 +88,14 @@ class ConnectedLanding extends Component {
 				}
 
 				break;
+
+			case "log":
+				if (this.props.currentUser.privileged) {
+					return <EventsLog />;
+				}
+
+				break;
+
 			default:
 				return;
 		}
@@ -99,6 +108,19 @@ class ConnectedLanding extends Component {
 	logoutButton() {
 		if (this.props.currentUser.activated) {
 			return <a onClick={this.logOut}>Logout</a>;
+		}
+	}
+
+	eventsLogButton(){
+		if (this.props.currentUser.privileged) {
+			return (
+				<a
+					className={this.state.view === "log" ? "active" : ""}
+					onClick={() => this.changePage("log")}
+				>
+					Events Log
+				</a>
+			);
 		}
 	}
 
@@ -136,6 +158,7 @@ class ConnectedLanding extends Component {
 				<div className="navigation">
 					{this.accessButon()}
 					{this.settingsButton()}
+					{this.eventsLogButton()}
 					{this.logoutButton()}
 				</div>
 

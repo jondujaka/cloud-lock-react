@@ -1,4 +1,5 @@
 import { constants } from "../constants/action-types.js";
+import { addItemToStore } from "../utilities.js";
 
 const initialState = {
 	currentUser: { privileged: false, activated: false, id: Number },
@@ -23,6 +24,8 @@ const initialState = {
 	},
 	log: []
 };
+
+
 
 function rootReducer(state = initialState, action) {
 	switch (action.type) {

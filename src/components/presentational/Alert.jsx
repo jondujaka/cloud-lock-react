@@ -22,7 +22,7 @@ const ConnectedAlert = props => {
 			<div className={`alert alert-${props.alert.type} alert-${status}`}>
 				<div className="alert-wrapper">
 					<span>{props.alert.content}</span>
-					<a onClick={dismiss} className="close">
+					<a onClick={dismiss} title="dismiss" className="close">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 16 16"

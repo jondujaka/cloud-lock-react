@@ -6,9 +6,12 @@ ul {
 
 li {
 	display: flex;
-	justify-content: flex-end;
 	padding: 1rem 0.5rem;
 	align-items: center;
+}
+
+.table li {
+	justify-content: flex-end;
 }
 
 li:hover {
@@ -18,7 +21,7 @@ li:hover {
 li:not(:first-of-type) {
 	border-top: 1px solid #ddd;
 }
-li span {
+.table li span {
 	margin-right: auto;
 	max-width: 180px;
 	word-break: break-all;
@@ -29,6 +32,7 @@ li .options {
 .options label {
 	margin: 0 0.5rem;
 	display: inline-flex;
+	cursor: pointer;
 }
 
 .options label input {
