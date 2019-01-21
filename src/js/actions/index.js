@@ -20,9 +20,16 @@ const removeDoor = payload => {
 	return { type: constants.REMOVE_DOOR, payload };
 }
 
+const accessDoor = payload => {
+	return { type: constants.ACCESS_DOOR, payload };
+}
+
 const toggleAlert = payload => {
-	console.log('action');
 	return { type: constants.TOGGLE_ALERT, payload };
+}
+
+const logItem = payload => {
+	return {type: constants.LOG_ITEM, payload }
 }
 
 const login = payload => {
@@ -39,7 +46,9 @@ export {
 	removeUser,
 	updateUser,
 	removeDoor,
+	accessDoor,
 	toggleAlert,
+	logItem,
 	login,
 	logout
 }

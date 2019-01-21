@@ -20,7 +20,8 @@ const initialState = {
 		show: false,
 		type: "",
 		content: ""
-	}
+	},
+	log: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -93,6 +94,13 @@ function rootReducer(state = initialState, action) {
 
 		case constants.LOGIN:
 			return { ...state, currentUser: { ...action.payload } };
+			break;
+
+		case constants.LOG_ITEM:
+			return {
+				...state,
+				log: [...state.log.concat(action.payload)]
+			}
 			break;
 
 		case constants.LOGOUT:
