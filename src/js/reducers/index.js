@@ -6,7 +6,7 @@ const initialState = {
 		{
 			name: "admin", //Only this user can add remove other users and doors
 			id: 1,
-			access: [1],
+			access: [1, 2],
 			admin: true
 		}
 	],
