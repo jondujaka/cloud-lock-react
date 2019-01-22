@@ -1,6 +1,8 @@
 # Cloud Lock
 React application with Redux for managing users and entries with access privileges.
 
+[Click here for demo](https://jondujaka.online/react)
+
 ## Tested on
 React 16.7.0, React-redux 6.0, Webpack 4.28.4
 
