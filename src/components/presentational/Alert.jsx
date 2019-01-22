@@ -1,16 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { toggleAlert } from "../../js/actions/index";
 
 import "./Alert.scss";
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = dispatch => {
 	return { toggleAlert: alert => dispatch(toggleAlert(alert)) };
-}
+};
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
 	return { alert: state.alert };
-}
+};
 
 const ConnectedAlert = props => {
 	const dismiss = () => {

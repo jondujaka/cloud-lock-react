@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./Table.scss";
 
 const Table = props => {
@@ -40,8 +41,8 @@ const Table = props => {
 		}
 	};
 
-	const removeButton = (id) => {
-		if(props.noRemoveComparator === id && props.type === 'people'){
+	const removeButton = id => {
+		if (props.noRemoveComparator === id && props.type === "people") {
 			return;
 		} else {
 			return (
@@ -50,10 +51,7 @@ const Table = props => {
 					className="remove"
 					onClick={() => deleteItem(id)}
 				>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						viewBox="0 0 16 16"
-					>
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
 						<path fill="none" d="M-2-1h20v18H-2z" />
 						<g>
 							<path
@@ -63,9 +61,9 @@ const Table = props => {
 						</g>
 					</svg>
 				</a>
-			)
+			);
 		}
-	}
+	};
 
 	return (
 		<div className="table">
@@ -78,12 +76,22 @@ const Table = props => {
 						</div>
 
 						{removeButton(item.id)}
-
 					</li>
 				))}
 			</ul>
 		</div>
 	);
 };
+
+
+Table.propTypes = {
+	options: PropTypes.array,
+	deleteItem: PropTypes.func,
+	updateUser: PropTypes.func,
+	list: PropTypes.array,
+	noRemoveComparator: PropTypes.number,
+	type: PropTypes.string
+};
+
 
 export default Table;

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "./Input.scss";
 
 class Input extends Component {
@@ -38,6 +39,17 @@ class Input extends Component {
 			</form>
 		);
 	}
-}
+};
+
+
+Input.propTypes = {
+	placeholder: PropTypes.string,
+	submitText: PropTypes.string,
+	onChange: PropTypes.func
+};
+
+Input.defaultProps = {
+	submitText: "Submit"
+};
 
 export default Input;

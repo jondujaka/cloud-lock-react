@@ -6,13 +6,13 @@ import Input from "../presentational/Input.jsx";
 
 import "./AccessPoint.scss";
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = dispatch => {
 	return {
 		login: user => dispatch(login(user)),
 		toggleAlert: alert => dispatch(toggleAlert(alert)),
 		accessDoor: door => dispatch(accessDoor(door))
 	};
-}
+};
 
 const mapStateToProps = state => {
 	return {

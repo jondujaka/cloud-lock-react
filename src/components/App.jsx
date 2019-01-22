@@ -1,5 +1,4 @@
 import React from "react";
-
 import People from "./container/People";
 import Doors from "./container/Doors";
 import Landing from "./container/Landing";

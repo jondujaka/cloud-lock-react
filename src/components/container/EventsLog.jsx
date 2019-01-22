@@ -10,18 +10,27 @@ const mapStateToProps = state => {
 };
 
 const ConnectedEventsLog = props => {
-
 	return (
 		<div className="events-log">
 			{props.log.length > 0 ? (
 				<ul>
 					{props.log.map((item, index) => (
-						<li key={index} className={item.logType==='denied' ? "text-red" : "text-green"}>
-							{item.user.name} was {item.logType} access on {item.door}
+						<li
+							key={index}
+							className={
+								item.logType === "denied"
+									? "text-red"
+									: "text-green"
+							}
+						>
+							<span>
+								<strong>{item.user.name}</strong> was{" "}
+								{item.logType} access on{" "}
+								<strong>{item.door}</strong>
+							</span>
 							<span className="time-stamp">{item.timestamp}</span>
-							</li>
-						)
-					)}
+						</li>
+					))}
 				</ul>
 			) : (
 				<span>No events to display</span>
@@ -30,8 +39,6 @@ const ConnectedEventsLog = props => {
 	);
 };
 
-const EventsLog = connect(
-	mapStateToProps
-)(ConnectedEventsLog);
+const EventsLog = connect(mapStateToProps)(ConnectedEventsLog);
 
 export default EventsLog;

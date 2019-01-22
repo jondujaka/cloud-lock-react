@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import { addUser, removeUser, updateUser } from "../../js/actions/index";
 import { uniqueId } from "../../js/utilities";
@@ -8,17 +9,21 @@ import Table from "../presentational/Table.jsx";
 import Input from "../presentational/Input.jsx";
 
 const mapStateToProps = state => {
-	return { users: state.users, doors: state.doors, currentUser: state.currentUser };
+	return {
+		users: state.users,
+		doors: state.doors,
+		currentUser: state.currentUser
+	};
 };
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = dispatch => {
 	return {
 		addNewUser: user => dispatch(addUser(user)),
 		removeUser: user => dispatch(removeUser(user)),
 		updateUser: (accesses, userId) =>
 			dispatch(updateUser({ accesses, userId }))
 	};
-}
+};
 
 const ConnectedPeople = props => {
 	const registerUser = user => {
@@ -45,7 +50,7 @@ const ConnectedPeople = props => {
 					item="person"
 					submitFunction={registerUser}
 					submitText="Add"
-					placeholder="Add new user"
+					// placeholder="Add new user"
 				/>
 			);
 		}

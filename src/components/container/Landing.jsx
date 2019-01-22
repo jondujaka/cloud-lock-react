@@ -11,13 +11,13 @@ import Settings from "../presentational/Settings";
 
 import "./Landing.scss";
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = dispatch => {
 	return {
 		login: user => dispatch(login(user)),
 		logout: () => dispatch(logout()),
 		toggleAlert: alert => dispatch(toggleAlert(alert))
 	};
-}
+};
 
 const mapStateToProps = state => {
 	return {
@@ -92,7 +92,7 @@ class ConnectedLanding extends Component {
 		}
 	}
 
-	eventsLogButton(){
+	eventsLogButton() {
 		if (this.props.currentUser.privileged) {
 			return (
 				<a

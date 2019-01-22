@@ -1,13 +1,14 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import Doors from "../container/Doors";
 import People from "../container/People";
 
 import "./Settings.scss";
 
-const Table = props => {
+const Settings = props => {
 	const deleteItem = id => {
-		props.deleteItem(id)
+		props.deleteItem(id);
 	};
 
 	return (
@@ -22,4 +23,8 @@ const Table = props => {
 	);
 };
 
-export default Table;
+Settings.propTypes = {
+	deleteItem: PropTypes.func
+};
+
+export default Settings;
