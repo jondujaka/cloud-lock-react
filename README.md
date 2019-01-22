@@ -18,5 +18,5 @@ To create distribution build:
 
 #### Credits
 
-Jon Dujaka, January 2019
+Jon Dujaka, January 2019\
 [jdujaka@gmail.com](mailto:jdujaka@gmail.com)
