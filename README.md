@@ -1,7 +1,8 @@
 # Cloud Lock
 React application with Redux for managing users and entries with access privileges.
 
-[Click here for demo](https://jondujaka.online/cloud-lock)
+[Website Demo](https://jondujaka.online/cloud-lock),
+[Video Walkthrough](https://drive.google.com/file/d/1r2gInZiy8ijJZxb_A_n8dTy4jFeMomyo/view?usp=sharing)
 
 ## Tested on
 React 16.7.0, React-redux 6.0, Webpack 4.28.4
@@ -11,10 +12,13 @@ React 16.7.0, React-redux 6.0, Webpack 4.28.4
 First, install the dependencies with `npm install`
 
 To run locally:
-```npm start```
+`npm start`
 
 To create distribution build:
-```npm run build```
+`npm run build`
+
+**Default Credentials** <br>
+`username: admin`
 
 #### Credits
 
