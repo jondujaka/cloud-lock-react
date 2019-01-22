@@ -4,6 +4,7 @@
 
 	li {
 		justify-content: space-between;
+		flex-wrap: wrap;
 
 		&.text-green {
 			color: green;
@@ -11,10 +12,6 @@
 		&.text-red {
 			color: red;
 		}
-	}
-
-	.time-stamp {
-		text-align: right;
 	}
 
 }
