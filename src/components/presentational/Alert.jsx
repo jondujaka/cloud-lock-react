@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { toggleAlert } from "../../js/actions/index";
 
-import "./Alert.css";
+import "./Alert.scss";
 
 function mapDispatchToProps(dispatch) {
 	return { toggleAlert: alert => dispatch(toggleAlert(alert)) };

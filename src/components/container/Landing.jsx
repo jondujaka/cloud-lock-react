@@ -9,7 +9,7 @@ import EventsLog from "./EventsLog";
 import Input from "../presentational/Input.jsx";
 import Settings from "../presentational/Settings";
 
-import "./Landing.css";
+import "./Landing.scss";
 
 function mapDispatchToProps(dispatch) {
 	return {

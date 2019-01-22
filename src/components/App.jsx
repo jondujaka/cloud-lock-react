@@ -6,7 +6,7 @@ import Landing from "./container/Landing";
 import Settings from "./presentational/Settings";
 import Alert from "./presentational/Alert";
 
-import "./App.css";
+import "./App.scss";
 
 const App = () => (
 	<div className="main-wrapper">

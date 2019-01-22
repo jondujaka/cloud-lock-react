@@ -3,7 +3,7 @@ import React from "react";
 import Doors from "../container/Doors";
 import People from "../container/People";
 
-import "./Settings.css";
+import "./Settings.scss";
 
 const Table = props => {
 	const deleteItem = id => {

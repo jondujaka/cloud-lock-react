@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { login, toggleAlert, accessDoor } from "../../js/actions/index";
 import Input from "../presentational/Input.jsx";
 
-import "./AccessPoint.css";
+import "./AccessPoint.scss";
 
 function mapDispatchToProps(dispatch) {
 	return {
@@ -34,7 +34,8 @@ const ConnectedAccessPoint = props => {
 					onClick={() => auth(door)}
 					key={door.id}
 				>
-					{door.name}
+					<span>{door.name}</span>
+					<span className="click-to-enter">Click to enter</span>
 				</a>
 			))}
 		</div>

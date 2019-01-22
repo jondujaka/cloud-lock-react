@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import Table from "../container/Doors";
 
-import "./EventsLog.css";
+import "./EventsLog.scss";
 
 const mapStateToProps = state => {
 	return { log: state.log };

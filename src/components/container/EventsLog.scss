@@ -1,0 +1,20 @@
+.events-log {
+	margin-top: 3rem;
+	text-align: center;
+
+	li {
+		justify-content: space-between;
+
+		&.text-green {
+			color: green;
+		}
+		&.text-red {
+			color: red;
+		}
+	}
+
+	.time-stamp {
+		text-align: right;
+	}
+
+}
