@@ -1,5 +1,7 @@
 # Cloud Lock
-React application with Redux for managing users and entries with access privileges.
+React application for managing users and entries with access privileges.
+
+Using Redux for state management with persistent state through localStorage.
 
 [Website Demo](https://jondujaka.online/cloud-lock),
 [Video Walkthrough](https://drive.google.com/file/d/1r2gInZiy8ijJZxb_A_n8dTy4jFeMomyo/view?usp=sharing)
