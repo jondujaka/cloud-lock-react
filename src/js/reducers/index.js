@@ -105,7 +105,7 @@ function rootReducer(state = initialState, action) {
 		case constants.LOG_ITEM:
 			return {
 				...state,
-				log: [...state.log.concat(action.payload)]
+				log: [ ...[].concat(action.payload, state.log)]
 			};
 			break;
 

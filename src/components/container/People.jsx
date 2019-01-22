@@ -8,7 +8,7 @@ import Table from "../presentational/Table.jsx";
 import Input from "../presentational/Input.jsx";
 
 const mapStateToProps = state => {
-	return { users: state.users, doors: state.doors };
+	return { users: state.users, doors: state.doors, currentUser: state.currentUser };
 };
 
 function mapDispatchToProps(dispatch) {
@@ -57,10 +57,12 @@ const ConnectedPeople = props => {
 				<React.Fragment>
 					<h2>People</h2>
 					<Table
+						type="people"
 						list={props.users}
 						deleteItem={deleteUser}
 						options={props.doors}
 						updateUser={updateUser}
+						noRemoveComparator={props.currentUser.id}
 					/>
 				</React.Fragment>
 			) : (
