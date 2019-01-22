@@ -1,51 +1,46 @@
 {
-	"name": "cloud-lock",
-	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "webpack-dev-server --open --mode development --hot",
-		"build": "webpack --mode production"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/jondujaka/cloud-lock.git"
-	},
-	"author": "Jon Dujaka",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/jondujaka/cloud-lock/issues"
-	},
-	"homepage": "https://github.com/jondujaka/cloud-lock#readme",
-	"devDependencies": {
-		"babel-eslint": "^10.0.1",
-		"babel-loader": "^8.0.5",
-		"babel-preset-es2015": "^6.24.1",
-		"css-loader": "^2.1.0",
-		"eslint": "^5.12.1",
-		"eslint-loader": "^2.1.1",
-		"eslint-plugin-react": "^7.12.4",
-		"html-loader": "^0.5.5",
-		"html-webpack-plugin": "^3.2.0",
-		"webpack-dev-server": "^3.1.14",
-		"node-sass": "^4.11.0",
-		"sass-loader": "^7.1.0",
-		"style-loader": "^0.23.1",
-		"webpack": "^4.28.4",
-		"webpack-cli": "^3.2.1",
-		"@babel/core": "^7.2.2",
-		"@babel/preset-env": "^7.2.3",
-		"@babel/preset-react": "^7.0.0",
-		"@babel/preset-stage-0": "^7.0.0",
-		"normalize.css": "^8.0.1"
-	},
-	"dependencies": {
-		"react": "^16.7.0",
-		"react-dom": "^16.7.0",
-		"react-router-dom": "^4.3.1",
-		"react-redux": "^6.0.0",
-		"redux": "^4.0.1",
-		"lodash": "^4.17.11"
-	}
+  "name": "cloud-lock",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --open --mode development --hot",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jondujaka/cloud-lock.git"
+  },
+  "author": "Jon Dujaka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jondujaka/cloud-lock/issues"
+  },
+  "homepage": "https://github.com/jondujaka/cloud-lock#readme",
+  "dependencies": {
+    "normalize-css": "^2.3.1",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "lodash": "^4.17.11",
+    "node-sass": "^4.11.0",
+    "react-redux": "^6.0.0",
+    "redux": "^4.0.1",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.0",
+    "eslint": "^5.12.1",
+    "eslint-loader": "^2.1.1",
+    "eslint-plugin-react": "^7.12.4"
+  }
 }
