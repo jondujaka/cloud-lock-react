@@ -48,7 +48,8 @@ li .options {
 }
 
 .table-wrapper form {
-	margin-top: 1rem;
+	margin-top: auto;
+	margin-bottom: 0;
 }
 
 .table-wrapper form input {

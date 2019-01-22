@@ -1,5 +1,5 @@
 const uniqueId = () => {
-  return Math.floor(Math.random() * 10000);
+	return Math.floor(Math.random() * 10000);
 };
 
 const timeStamp = () => {
@@ -9,9 +9,9 @@ const timeStamp = () => {
 	let str = dateLocal.toISOString().slice(0, 19).replace(/-/g, "/").replace("T", " ");
 
 	return str;
-}
+};
 
 export {
 	uniqueId,
 	timeStamp
-}
+};

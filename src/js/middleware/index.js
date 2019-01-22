@@ -3,15 +3,14 @@ import { timeStamp } from "../utilities";
 import { logItem, toggleAlert } from "../actions/index";
 
 const logger = store => next => action => {
-
-	if(action.type === constants.ACCESS_DOOR){
+	if (action.type === constants.ACCESS_DOOR) {
 		let hasAccess = false;
 
 		let currentUser = store.getState().currentUser;
 		let allUsers = store.getState().users;
 
-		currentUser.access.map(access =>{
-			if(access === action.payload.id){
+		currentUser.access.map(access => {
+			if (access === action.payload.id) {
 				hasAccess = true;
 			}
 		});
@@ -20,36 +19,37 @@ const logger = store => next => action => {
 			return user.id === currentUser.id;
 		});
 
-		let logType = hasAccess ? 'authorized' : 'denied';
+		let logType = hasAccess ? "authorized" : "denied";
 
 		let alertObj;
 
-		if(hasAccess){
+		if (hasAccess) {
 			alertObj = {
-				type: 'success',
-				content: 'Access granted!',
+				type: "success",
+				content: "Access granted!",
 				show: true
-			}
+			};
 		} else {
 			alertObj = {
-				type: 'error',
-				content: 'Access denied!',
+				type: "error",
+				content: "Access denied!",
 				show: true
-			}
-		};
+			};
+		}
 
 		store.dispatch(toggleAlert(alertObj));
 
-		store.dispatch(logItem({
-			user: loggedUser,
-			door: action.payload.name,
-			logType,
-			timestamp: timeStamp()
-		}));
+		store.dispatch(
+			logItem({
+				user: loggedUser,
+				door: action.payload.name,
+				logType,
+				timestamp: timeStamp()
+			})
+		);
 	}
 
 	return next(action);
-}
+};
 
 export default logger;
-

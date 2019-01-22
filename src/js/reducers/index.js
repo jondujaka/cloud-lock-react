@@ -1,5 +1,4 @@
 import { constants } from "../constants/action-types.js";
-import { addItemToStore } from "../utilities.js";
 
 const initialState = {
 	currentUser: { privileged: false, activated: false, id: Number },
@@ -25,8 +24,7 @@ const initialState = {
 	log: []
 };
 
-
-
+/* eslint-disable no-unreachable */
 function rootReducer(state = initialState, action) {
 	switch (action.type) {
 		case constants.ADD_USER:
@@ -58,7 +56,7 @@ function rootReducer(state = initialState, action) {
 			};
 			break;
 
-		case constants.UPDATE_USER:
+		case constants.UPDATE_USER: {
 			let updatedUsers = state.users.map(user => {
 				if (user.id !== action.payload.userId) {
 					return user;
@@ -67,16 +65,16 @@ function rootReducer(state = initialState, action) {
 				return { ...user, access: action.payload.accesses };
 			});
 
-			if(action.payload.userId == state.currentUser.id){
+			if (action.payload.userId == state.currentUser.id) {
 				let updatedCurrentUser = {
 					...state.currentUser,
 					access: action.payload.accesses
-				}
+				};
 				return {
 					...state,
 					users: [...updatedUsers],
-					currentUser: {...updatedCurrentUser}
-				}
+					currentUser: { ...updatedCurrentUser }
+				};
 			} else {
 				return {
 					...state,
@@ -85,6 +83,7 @@ function rootReducer(state = initialState, action) {
 			}
 
 			break;
+		}
 
 		case constants.REMOVE_DOOR:
 			return {
@@ -103,7 +102,7 @@ function rootReducer(state = initialState, action) {
 			return {
 				...state,
 				log: [...state.log.concat(action.payload)]
-			}
+			};
 			break;
 
 		case constants.LOGOUT:
@@ -118,4 +117,7 @@ function rootReducer(state = initialState, action) {
 			return state;
 	}
 }
+
+/* eslint-enable no-unreachable */
+
 export default rootReducer;

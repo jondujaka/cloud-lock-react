@@ -7,7 +7,7 @@ import "./Settings.css";
 
 const Table = props => {
 	const deleteItem = id => {
-		props.deleteItem(id);
+		props.deleteItem(id)
 	};
 
 	return (
