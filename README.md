@@ -11,7 +11,7 @@ First, install the dependencies with `npm install`
 To run locally:
 ```npm start```
 
-To create distribution build
+To create distribution build:
 ```npm run build```
 
 #### Credits
