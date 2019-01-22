@@ -6,6 +6,9 @@ Using Redux for state management with persistent state through localStorage.
 [Website Demo](https://jondujaka.online/cloud-lock),
 [Video Walkthrough](https://drive.google.com/file/d/1r2gInZiy8ijJZxb_A_n8dTy4jFeMomyo/view?usp=sharing)
 
+**Default Credentials** <br>
+`username: admin`
+
 ## Tested on
 React 16.7.0, React-redux 6.0, Webpack 4.28.4
 
@@ -19,8 +22,6 @@ To run locally:
 To create distribution build:
 `npm run build`
 
-**Default Credentials** <br>
-`username: admin`
 
 #### Credits
 
