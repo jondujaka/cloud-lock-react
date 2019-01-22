@@ -47,6 +47,32 @@ const logger = store => next => action => {
 				timestamp: timeStamp()
 			})
 		);
+	} else if (action.type === constants.LOGIN) {
+		let userExists = false;
+		let newUser = {};
+
+		let users = store.getState().users;
+		let username = action.payload;
+		users.forEach(user => {
+			if (user.name.toLowerCase() === username.toLowerCase()) {
+				userExists = true;
+				newUser.activated = true;
+				newUser.privileged = user.admin;
+				newUser.id = user.id;
+				newUser.access = [...user.access];
+			}
+		});
+		if (userExists) {
+			action.payload = newUser;
+			console.log(action.payload);
+			next(action);
+		} else {
+			store.dispatch(toggleAlert({
+				show: true,
+				content: "That user doesn't exist",
+				type: "error"
+			}));
+		}
 	}
 
 	return next(action);

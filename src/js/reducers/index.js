@@ -12,8 +12,12 @@ const initialState = {
 	],
 	doors: [
 		{
-			name: "Door 1",
+			name: "Shop",
 			id: 1
+		},
+		{
+			name: "Magazine",
+			id: 2
 		}
 	],
 	alert: {

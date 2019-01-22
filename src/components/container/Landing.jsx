@@ -37,26 +37,7 @@ class ConnectedLanding extends Component {
 		this.changePage = this.changePage.bind(this);
 	}
 	auth(username) {
-		let userExists = false;
-		let newUser = {};
-		this.props.users.forEach(user => {
-			if (user.name.toLowerCase() === username.toLowerCase()) {
-				userExists = true;
-				newUser.activated = true;
-				newUser.privileged = user.admin;
-				newUser.id = user.id;
-				newUser.access = [...user.access];
-			}
-		});
-		if (userExists) {
-			this.props.login(newUser);
-		} else {
-			this.props.toggleAlert({
-				show: true,
-				content: "That user doesn't exist",
-				type: "error"
-			});
-		}
+		this.props.login(username);
 	}
 
 	logOut() {
