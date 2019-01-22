@@ -36,4 +36,16 @@ const saveState = state => {
 	}
 };
 
-export { uniqueId, timeStamp, loadState, saveState };
+
+const itemWithNameExists = (arr, name) => {
+	let exists = false;
+	arr.map(item => {
+		if(item.name.toLowerCase() === name.toLowerCase()){
+			exists = true;
+		}
+	});
+	return exists;
+
+};
+
+export { uniqueId, timeStamp, loadState, saveState, itemWithNameExists };

@@ -1,5 +1,5 @@
 import { constants } from "../constants/action-types.js";
-import { timeStamp } from "../utilities";
+import { timeStamp, itemWithNameExists } from "../utilities";
 import { logItem, toggleAlert } from "../actions/index";
 
 const logger = store => next => action => {
@@ -47,12 +47,19 @@ const logger = store => next => action => {
 				timestamp: timeStamp()
 			})
 		);
-	} else if (action.type === constants.LOGIN) {
+	} else {
+		return next(action);
+	}
+};
+
+const authentication = store => next => action => {
+	if (action.type === constants.LOGIN) {
 		let userExists = false;
 		let newUser = {};
 
 		let users = store.getState().users;
 		let username = action.payload;
+
 		users.forEach(user => {
 			if (user.name.toLowerCase() === username.toLowerCase()) {
 				userExists = true;
@@ -64,8 +71,7 @@ const logger = store => next => action => {
 		});
 		if (userExists) {
 			action.payload = newUser;
-			console.log(action.payload);
-			next(action);
+			return next(action);
 		} else {
 			store.dispatch(toggleAlert({
 				show: true,
@@ -73,9 +79,43 @@ const logger = store => next => action => {
 				type: "error"
 			}));
 		}
+	} else {
+		return next(action);
 	}
-
-	return next(action);
 };
 
-export default logger;
+const addItem = store => next => action => {
+	if (action.type === constants.ADD_USER) {
+
+		let userExists = itemWithNameExists(store.getState().users, action.payload.name);
+		if (userExists) {
+			store.dispatch(toggleAlert({
+				show: true,
+				content: "A user with that name already exists!",
+				type: "error"
+			}));
+		} else {
+			return next(action);
+		}
+	} else if (action.type === constants.ADD_DOOR) {
+		let doorExists = itemWithNameExists(store.getState().doors, action.payload.name);
+		if (doorExists) {
+			store.dispatch(toggleAlert({
+				show: true,
+				content: "A door with that name already exists!",
+				type: "error"
+			}));
+		} else {
+			return next(action);
+		}
+	} else {
+		return next(action);
+	}
+};
+
+
+export {
+	logger,
+	authentication,
+	addItem
+};
